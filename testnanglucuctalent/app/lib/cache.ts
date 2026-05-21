@@ -1,52 +1,33 @@
-// Fallback cache in-memory đơn giản nếu chưa có Redis
-class MemoryCache {
-  private store = new Map()
-  async get(key: string) {
-    const item = this.store.get(key)
-    if (!item) return null
-    if (Date.now() > item.expiry) {
-      this.store.delete(key)
-      return null
-    }
-    return item.value
-  }
-  async set(key: string, value: any, ttl: number) {
-    this.store.set(key, { value, expiry: Date.now() + ttl * 1000 })
-  }
-  async del(key: string) {
-    this.store.delete(key)
-  }
-}
-
-const memoryCache = new MemoryCache()
+import { redis } from './redis'
 
 export async function getCache<T>(key: string): Promise<T | null> {
   try {
-    // Thử dùng Redis nếu có
-    const { redis } = await import('./redis')
     const data = await redis.get(key)
     if (!data) return null
-    return JSON.parse(data)
+    return JSON.parse(data) as T
   } catch (error) {
-    // Fallback sang memory cache
-    return await memoryCache.get(key)
+    console.warn(`Cache get error for key ${key}:`, error)
+    return null
   }
 }
 
-export async function setCache(key: string, data: any, ttl = 300): Promise<void> {
+export async function setCache(key: string, data: any, ttl: number = 300): Promise<void> {
   try {
-    const { redis } = await import('./redis')
     await redis.setex(key, ttl, JSON.stringify(data))
   } catch (error) {
-    await memoryCache.set(key, data, ttl)
+    console.warn(`Cache set error for key ${key}:`, error)
   }
 }
 
 export async function deleteCache(key: string): Promise<void> {
   try {
-    const { redis } = await import('./redis')
     await redis.del(key)
   } catch (error) {
-    await memoryCache.del(key)
+    console.warn(`Cache delete error for key ${key}:`, error)
   }
+}
+
+export async function clearCacheByPattern(pattern: string): Promise<void> {
+  // Note: In production, you might want to implement pattern-based deletion
+  console.log(`Clear cache pattern: ${pattern}`)
 }

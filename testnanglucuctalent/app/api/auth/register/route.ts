@@ -1,14 +1,17 @@
+// app/api/auth/register/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
-import { supabaseAdmin } from '@/app/lib/supabase/server'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this'
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this-in-production'
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password, company } = await request.json()
+    const body = await request.json()
+    const { name, email, password, company } = body
 
+    console.log('📝 Register request:', { name, email, company, passwordProvided: !!password })
+
+    // Validation
     if (!name || !email || !password || !company) {
       return NextResponse.json(
         { message: 'Vui lòng điền đầy đủ thông tin' },
@@ -23,77 +26,28 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
-    
-    // DEMO MODE: Trả về thành công ngay lập tức
-    const demoUser = {
+    // Create new user (demo mode - just return success)
+    const newUser = {
       id: `user-${Date.now()}`,
       email,
       name,
-      role: 'staff',
+      role: 'admin',
       organizationId: `org-${Date.now()}`
     }
-    
-    const token = jwt.sign(
-      {
-        id: demoUser.id,
-        email: demoUser.email,
-        name: demoUser.name,
-        role: demoUser.role,
-        organizationId: demoUser.organizationId,
-      },
-      JWT_SECRET,
-      { expiresIn: '24h' }
-    )
+
+    const token = jwt.sign(newUser, JWT_SECRET, { expiresIn: '7d' })
+
+    console.log('✅ Registration successful for:', email)
 
     return NextResponse.json({
+      success: true,
       token,
-      user: demoUser,
+      user: newUser
     })
-    
-    /* Bỏ comment khi có database thật
-    // Tạo organization mới
-    const { data: org, error: orgError } = await supabaseAdmin
-      .from('organizations')
-      .insert({ name: company, brand_tone: 'professional' })
-      .select()
-      .single()
-    
-    if (orgError) throw orgError
-    
-    // Tạo user mới
-    const { data: user, error: userError } = await supabaseAdmin
-      .from('users')
-      .insert({
-        name,
-        email,
-        password_hash: hashedPassword,
-        role: 'admin',
-        organization_id: org.id,
-      })
-      .select()
-      .single()
-    
-    if (userError) throw userError
-    
-    const token = jwt.sign(
-      {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        organizationId: user.organization_id,
-      },
-      JWT_SECRET,
-      { expiresIn: '24h' }
-    )
-
-    return NextResponse.json({ token, user })
-    */
   } catch (error) {
-    console.error('Lỗi đăng ký:', error)
+    console.error('Registration error:', error)
     return NextResponse.json(
-      { message: 'Đăng ký thất bại' },
+      { message: 'Đăng ký thất bại, vui lòng thử lại sau' },
       { status: 500 }
     )
   }

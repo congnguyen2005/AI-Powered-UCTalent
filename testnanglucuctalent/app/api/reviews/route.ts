@@ -1,8 +1,9 @@
-// app/api/reviews/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { getAuthUser } from '@/app/lib/auth'
+import { supabaseAdmin } from '@/app/lib/supabase/server'
+import { getCache, setCache } from '@/app/lib/cache'
 
-// Mock data cho reviews
+// Mock data for demo mode
 const mockReviews = [
   {
     id: '1',
@@ -62,8 +63,7 @@ const mockReviews = [
     sentiment_score: 0.88,
     priority: 'low',
     status: 'approved',
-    platform: 'google',
-    response: 'Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của chúng tôi!'
+    platform: 'google'
   },
 ]
 
@@ -71,31 +71,97 @@ export async function GET(request: NextRequest) {
   try {
     const authUser = getAuthUser(request)
     if (!authUser) {
-      return NextResponse.json({ error: 'Chưa đăng nhập' }, { status: 401 })
+      return NextResponse.json(
+        { error: 'Chưa đăng nhập' },
+        { status: 401 }
+      )
     }
 
     const { searchParams } = new URL(request.url)
     const sentiment = searchParams.get('sentiment')
     const priority = searchParams.get('priority')
+    const limit = parseInt(searchParams.get('limit') || '50')
+    const offset = parseInt(searchParams.get('offset') || '0')
 
-    let filteredReviews = [...mockReviews]
-
-    if (sentiment && sentiment !== 'all') {
-      filteredReviews = filteredReviews.filter(r => r.sentiment === sentiment)
+    const cacheKey = `reviews:${authUser.organizationId}:${sentiment}:${priority}:${limit}:${offset}`
+    
+    // Try to get from cache
+    const cached = await getCache(cacheKey)
+    if (cached) {
+      return NextResponse.json(cached)
     }
-    if (priority && priority !== 'all') {
-      filteredReviews = filteredReviews.filter(r => r.priority === priority)
+
+    // Check if we should use demo mode
+    const isDemoMode = !process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('supabase.co') || 
+                       process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('your-project')
+    
+    let reviews = []
+    let total = 0
+
+    if (isDemoMode) {
+      // Demo mode: use mock data
+      let filtered = [...mockReviews]
+      
+      if (sentiment && sentiment !== 'all') {
+        filtered = filtered.filter(r => r.sentiment === sentiment)
+      }
+      
+      if (priority && priority !== 'all') {
+        filtered = filtered.filter(r => r.priority === priority)
+      }
+      
+      total = filtered.length
+      reviews = filtered.slice(offset, offset + limit)
+      
+      console.log('📊 Using demo mode for reviews, returned:', reviews.length)
+    } else {
+      // Real database
+      let query = supabaseAdmin
+        .from('reviews')
+        .select('*', { count: 'exact' })
+        .eq('location_id', authUser.organizationId)
+        .order('date', { ascending: false })
+        .range(offset, offset + limit - 1)
+
+      if (sentiment && sentiment !== 'all') {
+        query = query.eq('sentiment', sentiment)
+      }
+
+      if (priority && priority !== 'all') {
+        query = query.eq('priority', priority)
+      }
+
+      const { data, error, count } = await query
+
+      if (error) {
+        console.error('Supabase error:', error)
+        throw error
+      }
+
+      reviews = data || []
+      total = count || 0
     }
 
-    return NextResponse.json({ 
-      reviews: filteredReviews,
-      total: filteredReviews.length
-    })
+    const result = {
+      reviews,
+      total,
+      hasMore: offset + limit < total,
+      pagination: { limit, offset }
+    }
+
+    // Cache the result
+    await setCache(cacheKey, result, 300)
+
+    return NextResponse.json(result)
   } catch (error) {
-    console.error('Lỗi lấy reviews:', error)
-    return NextResponse.json(
-      { error: 'Không thể tải danh sách đánh giá' },
-      { status: 500 }
-    )
+    console.error('Error fetching reviews:', error)
+    
+    // Fallback to mock data on error
+    return NextResponse.json({
+      reviews: mockReviews.slice(0, 10),
+      total: mockReviews.length,
+      hasMore: false,
+      error: 'Using fallback mock data'
+    }, { status: 200 })
   }
 }

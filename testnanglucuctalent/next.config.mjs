@@ -1,4 +1,3 @@
-// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,10 +9,16 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts'],
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
   },
-  // Bỏ turbopack - không phải key hợp lệ
-  // Sử dụng --turbopack trong script thay vì config
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 }
 
 export default nextConfig

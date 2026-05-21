@@ -1,4 +1,3 @@
-// app/components/dashboard/Topbar.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -17,8 +16,9 @@ import {
   MessageSquare,
   AlertTriangle,
   CheckCircle,
-  X
+  X,
 } from 'lucide-react'
+import Link from 'next/link'
 
 interface Notification {
   id: string
@@ -34,6 +34,8 @@ export default function Topbar() {
   const [showNotifications, setShowNotifications] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [userName, setUserName] = useState('Admin')
+  const [userRole, setUserRole] = useState('Super Admin')
   const [notifications, setNotifications] = useState<Notification[]>([
     {
       id: '1',
@@ -61,6 +63,22 @@ export default function Topbar() {
     },
   ])
 
+  useEffect(() => {
+    const name = localStorage.getItem('userName') || 'Admin Demo'
+    const userStr = localStorage.getItem('user')
+    let role = 'Super Admin'
+    if (userStr) {
+      try {
+        const user = JSON.parse(userStr)
+        if (user.role === 'admin') role = 'Admin'
+        else if (user.role === 'manager') role = 'Manager'
+        else role = 'Staff'
+      } catch {}
+    }
+    setUserName(name)
+    setUserRole(role)
+  }, [])
+
   const unreadCount = notifications.filter(n => !n.read).length
 
   const getNotificationIcon = (type: string) => {
@@ -83,6 +101,7 @@ export default function Topbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
     localStorage.removeItem('userName')
     router.push('/auth/login')
   }
@@ -91,6 +110,12 @@ export default function Topbar() {
     setNotifications(prev =>
       prev.map(n => n.id === id ? { ...n, read: true } : n)
     )
+  }
+
+  const handleSearch = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && searchQuery) {
+      router.push(`/dashboard/reviews?search=${encodeURIComponent(searchQuery)}`)
+    }
   }
 
   return (
@@ -105,6 +130,7 @@ export default function Topbar() {
               placeholder="Tìm kiếm review, khách hàng, chi nhánh..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
               className="w-full pl-9 pr-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition text-sm"
             />
           </div>
@@ -113,9 +139,12 @@ export default function Topbar() {
         {/* Right - Actions */}
         <div className="flex items-center gap-2">
           {/* AI Quick Action */}
-          <button className="relative p-2 rounded-lg bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 transition border border-blue-500/30">
+          <Link
+            href="/dashboard/ai"
+            className="relative p-2 rounded-lg bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 transition border border-blue-500/30"
+          >
             <Sparkles className="w-5 h-5 text-blue-400" />
-          </button>
+          </Link>
 
           {/* Notifications */}
           <div className="relative">
@@ -192,9 +221,15 @@ export default function Topbar() {
               className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-lg hover:bg-slate-800 transition"
             >
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <span className="text-white text-sm font-medium">AD</span>
+                <span className="text-white text-sm font-medium">
+                  {userName.charAt(0).toUpperCase()}
+                </span>
               </div>
-              <ChevronDown className="w-4 h-4 text-slate-400" />
+              <div className="hidden md:block text-left">
+                <p className="text-sm font-medium text-white">{userName}</p>
+                <p className="text-xs text-slate-400">{userRole}</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-slate-400 hidden md:block" />
             </button>
 
             <AnimatePresence>
@@ -206,22 +241,30 @@ export default function Topbar() {
                   className="absolute right-0 top-full mt-2 w-64 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl overflow-hidden z-50"
                 >
                   <div className="p-4 border-b border-slate-800">
-                    <p className="font-semibold text-white">Admin Demo</p>
-                    <p className="text-xs text-slate-400 mt-0.5">admin@demo.com</p>
+                    <p className="font-semibold text-white">{userName}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!).email : 'user@demo.com'}</p>
                     <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 bg-blue-500/20 rounded-full">
                       <Shield className="w-3 h-3 text-blue-400" />
-                      <span className="text-xs text-blue-400">Super Admin</span>
+                      <span className="text-xs text-blue-400">{userRole}</span>
                     </div>
                   </div>
                   <div className="py-2">
-                    <button className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 transition">
+                    <Link
+                      href="/dashboard/settings/profile"
+                      className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 transition"
+                      onClick={() => setShowUserMenu(false)}
+                    >
                       <User className="w-4 h-4" />
                       Hồ sơ
-                    </button>
-                    <button className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 transition">
+                    </Link>
+                    <Link
+                      href="/dashboard/settings"
+                      className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 transition"
+                      onClick={() => setShowUserMenu(false)}
+                    >
                       <Settings className="w-4 h-4" />
                       Cài đặt
-                    </button>
+                    </Link>
                     <hr className="my-2 border-slate-800" />
                     <button
                       onClick={handleLogout}
