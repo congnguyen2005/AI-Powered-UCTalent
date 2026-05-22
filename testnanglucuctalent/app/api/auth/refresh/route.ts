@@ -1,7 +1,7 @@
 // app/api/auth/refresh/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
-import { getAuthUser } from '@/app/lib/auth'
+import { getAuthUser } from '../../../lib/auth'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this-in-production'
 

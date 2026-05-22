@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAuthUser } from '@/app/lib/auth'
-import { supabaseAdmin } from '@/app/lib/supabase/server'
-import { deleteCache } from '@/app/lib/cache'
+import { getAuthUser } from '../../../lib/auth'
+import { supabaseAdmin } from '../../../lib/supabase/server'
+import { deleteCache } from '../../../lib/cache'
 
 // In-memory store for demo mode
 const approvedResponses: Record<string, { response: string; approvedBy: string; approvedAt: string }> = {}

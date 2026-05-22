@@ -1,11 +1,10 @@
-// app/dashboard/reviews/page.tsx (cập nhật)
+// app/dashboard/reviews/page.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import EnhancedReviewCard from '@/app/components/dashboard/EnhancedReviewCard'
-import EnhancedAIPanel from '@/app/components/dashboard/EnhancedAIPanel'
-import { Search, Filter, Star, TrendingUp, AlertTriangle, Clock, CheckCircle } from 'lucide-react'
+import EnhancedReviewCard from '../../components/dashboard/EnhancedReviewCard'
+import { Search, Star } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 export default function ReviewsPage() {
@@ -78,7 +77,6 @@ export default function ReviewsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-white flex items-center gap-2">
           <Star className="w-7 h-7 text-yellow-400" />
@@ -87,7 +85,6 @@ export default function ReviewsPage() {
         <p className="text-slate-400 mt-1">Xem, phân tích và phản hồi đánh giá khách hàng</p>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="p-4 bg-slate-800/30 rounded-xl border border-slate-700">
           <p className="text-sm text-slate-400">Tổng số</p>
@@ -113,7 +110,6 @@ export default function ReviewsPage() {
         </div>
       </div>
 
-      {/* Filters */}
       <div className="flex flex-wrap gap-3 p-4 bg-slate-800/30 rounded-xl border border-slate-700">
         <div className="flex-1 min-w-[200px] relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -148,7 +144,6 @@ export default function ReviewsPage() {
         </select>
       </div>
 
-      {/* Review List */}
       <div className="space-y-4">
         {loading ? (
           [...Array(3)].map((_, i) => (

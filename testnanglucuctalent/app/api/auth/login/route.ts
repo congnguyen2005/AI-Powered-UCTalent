@@ -1,11 +1,10 @@
 // app/api/auth/login/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
-import { supabaseAdmin } from '@/app/lib/supabase/server'
-import { rateLimit, RATE_LIMITS } from '@/app/lib/rate-limit'
-import { logEvent } from '@/app/lib/logger'
-import { sendNotification } from '@/app/lib/notifications'
+import { supabaseAdmin } from '../../../lib/supabase/server'
+import { rateLimit, RATE_LIMITS } from '../../../lib/rate-limit'
+import { logEvent } from '../../../lib/logger'
+import { sendNotification } from '../../../lib/notifications'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this-in-production'
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh-secret-change-this'

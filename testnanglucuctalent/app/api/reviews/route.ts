@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAuthUser } from '@/app/lib/auth'
-import { supabaseAdmin } from '@/app/lib/supabase/server'
-import { getCache, setCache } from '@/app/lib/cache'
+import { getAuthUser } from '../../lib/auth'
+import { supabaseAdmin } from '../../lib/supabase/server'
+import { getCache, setCache } from '../../lib/cache'
 
 // Mock data for demo mode
 const mockReviews = [

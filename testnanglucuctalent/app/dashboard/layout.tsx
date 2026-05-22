@@ -3,8 +3,8 @@
 
 import { ReactNode, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Sidebar from '@/app/components/dashboard/Sidebar'
-import Topbar from '@/app/components/dashboard/Topbar'
+import Sidebar from '../components/dashboard/Sidebar'
+import Topbar from '../components/dashboard/Topbar'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter()
