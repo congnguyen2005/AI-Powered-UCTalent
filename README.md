@@ -114,22 +114,26 @@ cp .env.example .env.local
 npm run dev
 👉 Truy cập: http://localhost:3000
 
+
 🔧 Cấu hình
 Biến môi trường (.env.local)
 env
 # 🚀 NEXT.JS
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 
-# 🗄️ SUPABASE (Lấy từ Supabase Dashboard → Settings → API)
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-publishable-key
-SUPABASE_SERVICE_ROLE_KEY=your-secret-key
+NEXT_PUBLIC_SUPABASE_URL=https://fnxzwkahxhkakagtnxhv.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_jA1_uAXaoQsruYeVwsGmNA_tT-x__80
+SUPABASE_SERVICE_ROLE_KEY=sb_secret_aZQ8_sKtXeAxnJDtWFbkSQ_xfvBYASO
 
-# 🤖 OPENAI API (Tùy chọn)
-OPENAI_API_KEY=sk-proj-your-openai-api-key
+OPENAI_API_KEY=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
 
-# 🔐 JWT AUTHENTICATION
-JWT_SECRET=your-super-secret-key-min-32-characters
+JWT_SECRET=dcc14309276d73c97f3e226f1f4c149c58ef7b2135a2bfd94e7d46b1ca42ab5b
+REDIS_URL=redis://localhost:6379
+
+AI_RESPONSE_CACHE_TTL=300
+RATE_LIMIT_REQUESTS=100
+RATE_LIMIT_WINDOW=60
+
 
 # 🎮 DEMO MODE (Bỏ qua database cho development)
 DEMO_MODE=true
