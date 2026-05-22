@@ -1,38 +1,26 @@
+// app/api/auth/logout/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { logEvent } from '@/app/lib/logger'
-
-function getClientIp(request: NextRequest): string {
-  return (
-    request.headers.get('x-forwarded-for')?.split(',')[0] ||
-    request.headers.get('x-real-ip') ||
-    'unknown'
-  )
-}
+import { getAuthUser } from '@/app/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
-    const clientIp = getClientIp(request)
-    const authHeader = request.headers.get('authorization')
-    const token = authHeader?.replace('Bearer ', '')
-
-    if (token) {
-      try {
-        const jwt = require('jsonwebtoken')
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string)
-
-        if (decoded) {
-          logEvent('Authenticated request', { ip: clientIp, token })
-          return NextResponse.json({ message: 'Success' })
-        }
-      } catch (error) {
-        logEvent('JWT verification failed', { ip: clientIp, error })
-      }
-    } else {
-      logEvent('No token provided', { ip: clientIp })
-    }
+    const authUser = getAuthUser(request)
+    const clientIp = request.headers.get('x-forwarded-for') || 'unknown'
+    
+    // Logout logic - simply return success
+    // Token will be removed client-side
+    
+    console.log(`User logged out: ${authUser?.email || 'unknown'} from IP: ${clientIp}`)
+    
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Đăng xuất thành công' 
+    })
   } catch (error) {
-    logEvent('Error in POST request', { error })
+    console.error('Logout error:', error)
+    return NextResponse.json(
+      { message: 'Đăng xuất thất bại' },
+      { status: 500 }
+    )
   }
-
-  return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
 }

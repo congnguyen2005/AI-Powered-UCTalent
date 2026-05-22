@@ -1,46 +1,40 @@
+// app/api/auth/refresh/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
+import { getAuthUser } from '@/app/lib/auth'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this-in-production'
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh-secret-change-this'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { refreshToken } = body
-
-    if (!refreshToken) {
+    const authUser = getAuthUser(request)
+    
+    if (!authUser) {
       return NextResponse.json(
-        { message: 'Refresh token là bắt buộc', code: 'MISSING_REFRESH_TOKEN' },
-        { status: 400 }
+        { message: 'Không có quyền truy cập' },
+        { status: 401 }
       )
     }
-
-    // Verify refresh token
-    const decoded = jwt.verify(refreshToken, JWT_REFRESH_SECRET) as any
-
-    // Generate new access token
-    const newAccessToken = jwt.sign(
+    
+    // Create new token
+    const newToken = jwt.sign(
       {
-        id: decoded.id,
-        email: decoded.email,
-        type: 'access'
+        id: authUser.id,
+        email: authUser.email,
+        name: authUser.name,
+        role: authUser.role,
+        organizationId: authUser.organizationId,
       },
       JWT_SECRET,
-      { expiresIn: '15m' }
+      { expiresIn: '7d' }
     )
-
-    return NextResponse.json({
-      success: true,
-      token: newAccessToken,
-      expiresIn: 15 * 60
-    })
+    
+    return NextResponse.json({ token: newToken })
   } catch (error) {
     console.error('Refresh token error:', error)
-
     return NextResponse.json(
-      { message: 'Refresh token không hợp lệ', code: 'INVALID_REFRESH_TOKEN' },
-      { status: 401 }
+      { message: 'Không thể refresh token' },
+      { status: 500 }
     )
   }
 }
