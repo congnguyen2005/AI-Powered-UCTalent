@@ -1,19 +1,108 @@
-📖 AI ORM Platform
-<div align="center"> <img src="https://img.shields.io/badge/Next.js-15.3-black?style=for-the-badge&logo=next.js" alt="Next.js"> <img src="https://img.shields.io/badge/TypeScript-5.8-blue?style=for-the-badge&logo=typescript" alt="TypeScript"> <img src="https://img.shields.io/badge/TailwindCSS-4.0-06B6D4?style=for-the-badge&logo=tailwindcss" alt="TailwindCSS"> <img src="https://img.shields.io/badge/Supabase-2.49-3ECF8E?style=for-the-badge&logo=supabase" alt="Supabase"> <img src="https://img.shields.io/badge/OpenAI-1.0-412991?style=for-the-badge&logo=openai" alt="OpenAI"> <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License"> </div>
-<p align="center"> <strong>🚀 Nền tảng quản trị danh tiếng thông minh</strong><br> Tự động hóa quản lý đánh giá khách hàng với trí tuệ nhân tạo </p><p align="center"> <a href="#-tính-năng-chính">Tính năng</a> • <a href="#-yêu-cầu-hệ-thống">Yêu cầu</a> • <a href="#-cài-đặt-nhanh">Cài đặt</a> • <a href="#-cấu-hình">Cấu hình</a> • <a href="#-chạy-dự-án">Chạy dự án</a> • <a href="#-hỗ-trợ">Hỗ trợ</a> </p><hr>
-✨ Tính năng chính
-<table> <tr> <td align="center" width="33%"> <br> <strong>🤖 AI Response</strong><br> <sub>Tạo phản hồi thông minh<br>cho đánh giá khách hàng</sub> </td> <td align="center" width="33%"> <br> <strong>📊 Sentiment Analysis</strong><br> <sub>Phân tích cảm xúc<br>khách hàng realtime</sub> </td> <td align="center" width="33%"> <br> <strong>🚨 Crisis Detection</strong><br> <sub>Phát hiện sớm<br>rủi ro danh tiếng</sub> </td> </tr> <tr> <td align="center"> <br> <strong>📈 Analytics</strong><br> <sub>Báo cáo chi tiết<br>hiệu suất & danh tiếng</sub> </td> <td align="center"> <br> <strong>🏢 Multi-branch</strong><br> <sub>Quản lý nhiều<br>chi nhánh</sub> </td> <td align="center"> <br> <strong>🔐 RBAC</strong><br> <sub>Phân quyền người dùng<br>chi tiết</sub> </td> </tr> </table>
-📋 Yêu cầu hệ thống
-Công nghệ	Phiên bản
-<img src="https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js" width="120">	>= 20.x
-<img src="https://img.shields.io/badge/npm-9.x-CB3837?logo=npm" width="100">	>= 9.x
-<img src="https://img.shields.io/badge/PostgreSQL-15.x-4169E1?logo=postgresql" width="130">	>= 15.x
-<img src="https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis" width="100">	>= 7.x (tùy chọn)
-⚡ Cài đặt nhanh
-bash
+# 🚀 AI ORM Platform - Hệ thống quản trị danh tiếng thông minh
+
+<div align="center">
+  
+  <img src="https://img.shields.io/badge/Next.js-15.3-black?style=for-the-badge&logo=next.js" alt="Next.js">
+  <img src="https://img.shields.io/badge/TypeScript-5.8-blue?style=for-the-badge&logo=typescript" alt="TypeScript">
+  <img src="https://img.shields.io/badge/TailwindCSS-4.0-06B6D4?style=for-the-badge&logo=tailwindcss" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/Supabase-2.49-3ECF8E?style=for-the-badge&logo=supabase" alt="Supabase">
+  <img src="https://img.shields.io/badge/OpenAI-1.0-412991?style=for-the-badge&logo=openai" alt="OpenAI">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Deployed-Vercel-black?style=for-the-badge&logo=vercel" alt="Vercel">
+  
+</div>
+
+<br>
+
+<p align="center">
+  <strong>🤖 Nền tảng quản lý đánh giá khách hàng bằng trí tuệ nhân tạo</strong><br>
+  Tự động phân tích cảm xúc, phát hiện khủng hoảng và tạo phản hồi thông minh
+</p>
+
+<p align="center">
+  <a href="#demo">🌐 Demo</a> •
+  <a href="#tinh-nang">✨ Tính năng</a> •
+  <a href="#cai-dat">⚡ Cài đặt</a> •
+  <a href="#api">📡 API</a> •
+  <a href="#ho-tro">📞 Hỗ trợ</a>
+</p>
+
+---
+
+## 🌐 Demo {#demo}
+
+| Môi trường | Link |
+|------------|------|
+| 🌍 Production | **[https://ai-powered-uctalent.vercel.app](https://ai-powered-uctalent.vercel.app)** |
+| 💻 Local | `http://localhost:3000` |
+| 📦 Repository | **[github.com/congnguyen2005/AI-Powered-UCTalent](https://github.com/congnguyen2005/AI-Powered-UCTalent)** |
+
+### 🔐 Tài khoản demo
+
+| Vai trò | Email | Mật khẩu |
+|---------|-------|----------|
+| 👑 Super Admin | `admin@demo.com` | `admin123` |
+
+---
+
+## ✨ Tính năng {#tinh-nang}
+
+| Tính năng | Mô tả |
+|-----------|-------|
+| 🤖 **AI Response** | Tạo phản hồi thông minh cho đánh giá khách hàng |
+| 📊 **Sentiment Analysis** | Phân tích cảm xúc khách hàng theo thời gian thực |
+| 🚨 **Crisis Detection** | Phát hiện sớm rủi ro khủng hoảng truyền thông |
+| 📈 **Analytics Dashboard** | Báo cáo chi tiết về hiệu suất và danh tiếng |
+| 🏢 **Multi-branch** | Quản lý đánh giá cho nhiều chi nhánh |
+| 🔐 **RBAC** | Phân quyền người dùng chi tiết (Admin/Manager/Staff) |
+| 🎨 **Brand Voice** | Cấu hình giọng nói và phong cách thương hiệu |
+| 📱 **Responsive** | Giao diện tương thích mọi thiết bị |
+| 🌙 **Dark Mode** | Hỗ trợ giao diện tối |
+
+---
+
+## 🏗️ Kiến trúc hệ thống
+┌─────────────────────────────────────────────────────────────┐
+│ 🌐 Client Browser │
+└─────────────────────────────────────────────────────────────┘
+│
+▼
+┌─────────────────────────────────────────────────────────────┐
+│ ⚡ Next.js 15 (App Router) │
+│ ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐ │
+│ │ Pages │ │ Components │ │ API Routes │ │
+│ │ (RSC/CSR) │ │ (React) │ │ (Serverless Func) │ │
+│ └─────────────┘ └─────────────┘ └─────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+│
+┌─────────────────────┼─────────────────────┐
+▼ ▼ ▼
+┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+│ 🗄️ Supabase │ │ 🤖 OpenAI │ │ 💾 Redis │
+│ (PostgreSQL) │ │ (GPT-4o) │ │ (Cache) │
+└─────────────────┘ └─────────────────┘ └─────────────────┘
+
+text
+
+---
+
+## 📋 Yêu cầu hệ thống {#yeu-cau}
+
+| Công nghệ | Phiên bản |
+|-----------|-----------|
+| Node.js | >= 20.x |
+| npm / yarn | >= 9.x |
+| PostgreSQL (Supabase) | >= 15.x |
+| Redis (tùy chọn) | >= 7.x |
+
+---
+
+## ⚡ Cài đặt nhanh {#cai-dat}
+
+```bash
 # 1. Clone dự án
 git clone https://github.com/congnguyen2005/AI-Powered-UCTalent.git
-cd AI-Powered-UCTalent
+cd AI-Powered-UCTalent/testnanglucuctalent
 
 # 2. Cài đặt dependencies
 npm install
@@ -23,98 +112,53 @@ cp .env.example .env.local
 
 # 4. Chạy dự án
 npm run dev
-🔧 Cấu hình
-1. Biến môi trường (.env.local)
-env
+👉 Truy cập: http://localhost:3000
 
+🔧 Cấu hình
+Biến môi trường (.env.local)
+env
 # 🚀 NEXT.JS
 NEXT_PUBLIC_APP_URL=http://localhost:3000
-# 🗄️ SUPABASE DATABASE
+
+# 🗄️ SUPABASE (Lấy từ Supabase Dashboard → Settings → API)
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-publishable-key
 SUPABASE_SERVICE_ROLE_KEY=your-secret-key
 
-# ─────────────────────────────────────────────
 # 🤖 OPENAI API (Tùy chọn)
-# ─────────────────────────────────────────────
 OPENAI_API_KEY=sk-proj-your-openai-api-key
 
-# ─────────────────────────────────────────────
 # 🔐 JWT AUTHENTICATION
-# ─────────────────────────────────────────────
-JWT_SECRET=your-super-secret-key-min-32-chars
+JWT_SECRET=your-super-secret-key-min-32-characters
 
-# ─────────────────────────────────────────────
-# 🎮 DEMO MODE (Phát triển không cần DB)
-# ─────────────────────────────────────────────
+# 🎮 DEMO MODE (Bỏ qua database cho development)
 DEMO_MODE=true
-2. Tạo JWT Secret
+Tạo JWT Secret
 bash
 openssl rand -hex 32
 # Kết quả: dcc14309276d73c97f3e226f1f4c149c58ef7b2135a2bfd94e7d46b1ca42ab5b
 🗄️ Cấu hình Supabase
-Tạo dự án
-Truy cập Supabase → New project
+1. Tạo dự án
+Truy cập supabase.com → New project
 
 Đặt tên: ai-powered-uctalent
 
-Chọn region gần bạn
+Chọn region: Southeast Asia
 
 Chờ khởi tạo (2-3 phút)
 
-Lấy thông tin
+2. Lấy thông tin kết nối
 Vào Settings → API, sao chép:
 
 Thông tin	Biến môi trường
 Project URL	NEXT_PUBLIC_SUPABASE_URL
 anon public key	NEXT_PUBLIC_SUPABASE_ANON_KEY
 service_role key	SUPABASE_SERVICE_ROLE_KEY
-Tạo bảng
-Vào SQL Editor, chạy:
+3. Tạo bảng
+Vào SQL Editor, chạy file database-schema.sql có sẵn trong dự án.
 
-<details> <summary><b>📝 Xem SQL tạo bảng</b></summary>
-sql
--- Tạo bảng organizations
-CREATE TABLE IF NOT EXISTS organizations (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    brand_tone VARCHAR(50) DEFAULT 'professional',
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Tạo bảng users
-CREATE TABLE IF NOT EXISTS users (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    role VARCHAR(50) DEFAULT 'staff',
-    organization_id UUID REFERENCES organizations(id),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Tạo bảng reviews
-CREATE TABLE IF NOT EXISTS reviews (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    organization_id UUID REFERENCES organizations(id),
-    platform VARCHAR(50) NOT NULL,
-    rating INTEGER CHECK (rating >= 1 AND rating <= 5),
-    text TEXT NOT NULL,
-    author_name VARCHAR(255),
-    date TIMESTAMP WITH TIME ZONE NOT NULL,
-    sentiment VARCHAR(20),
-    priority VARCHAR(20) DEFAULT 'low',
-    status VARCHAR(20) DEFAULT 'pending',
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Dữ liệu mẫu
-INSERT INTO organizations (id, name) 
-VALUES ('11111111-1111-1111-1111-111111111111', 'Demo Organization')
-ON CONFLICT (id) DO NOTHING;
-</details>
 🤖 Cấu hình OpenAI (Tùy chọn)
-Truy cập OpenAI Platform
+Truy cập platform.openai.com/api-keys
 
 Create new secret key
 
@@ -126,94 +170,125 @@ Sao chép key → .env.local
 Development
 bash
 npm run dev
-👉 Truy cập: http://localhost:3000
-
 Production
 bash
 npm run build
 npm run start
-Docker
-<details> <summary><b>🐳 Dockerfile</b></summary>
-dockerfile
-FROM node:20-alpine AS base
-
-FROM base AS deps
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
-
-FROM base AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-
-EXPOSE 3000
-CMD ["node", "server.js"]
-</details>
+Deploy lên Vercel
 bash
-docker build -t ai-orm-platform .
-docker run -p 3000:3000 --env-file .env.local ai-orm-platform
-🔐 Tài khoản đăng nhập
-👤 Vai trò	📧 Email	🔑 Mật khẩu
-👑 Super Admin	admin@demo.com	admin123
-⚠️ Hoạt động khi DEMO_MODE=true
+# Cài đặt Vercel CLI
+npm i -g vercel
 
+# Deploy
+vercel --prod
+Deploy với Docker
+bash
+# Build image
+docker build -t ai-orm-platform .
+
+# Chạy container
+docker run -p 3000:3000 --env-file .env.local ai-orm-platform
 📁 Cấu trúc thư mục
 text
-📂 ai-orm-platform/
+📂 testnanglucuctalent/
 ├── 📂 app/
-│   ├── 📂 api/          # API Routes
-│   ├── 📂 auth/         # Đăng nhập/Đăng ký
-│   ├── 📂 components/   # React components
-│   ├── 📂 dashboard/    # Trang chính
-│   └── 📂 lib/          # Tiện ích
-├── 📂 public/           # Tài nguyên tĩnh
-├── 📄 .env.local        # Biến môi trường
-├── 📄 package.json      # Dependencies
-└── 📄 tsconfig.json     # TypeScript
+│   ├── 📂 api/                    # API Routes
+│   ├── 📂 auth/                   # Đăng nhập/Đăng ký
+│   ├── 📂 components/             # React components
+│   ├── 📂 dashboard/              # Dashboard pages
+│   │   ├── 📂 ai/                 # AI features
+│   │   ├── 📂 analytics/          # Analytics pages
+│   │   ├── 📂 crisis/             # Crisis center
+│   │   ├── 📂 docs/               # Documentation
+│   │   ├── 📂 help/               # Help center
+│   │   ├── 📂 organization/       # Org management
+│   │   ├── 📂 reviews/            # Review management
+│   │   └── 📂 settings/           # Settings pages
+│   └── 📂 lib/                    # Shared utilities
+├── 📂 public/                     # Static assets
+├── 📄 .env.local                  # Environment variables
+├── 📄 package.json                # Dependencies
+├── 📄 tailwind.config.ts          # Tailwind CSS config
+├── 📄 tsconfig.json               # TypeScript config
+└── 📄 README.md                   # Documentation
+📡 API Documentation {#api}
+Authentication
+Method	Endpoint	Mô tả
+POST	/api/auth/login	Đăng nhập
+POST	/api/auth/register	Đăng ký
+POST	/api/auth/logout	Đăng xuất
+AI
+Method	Endpoint	Mô tả
+POST	/api/ai/generate-response	Tạo phản hồi AI
+Reviews
+Method	Endpoint	Mô tả
+GET	/api/reviews	Lấy danh sách review
+POST	/api/reviews/approve	Duyệt phản hồi
+Ví dụ request
+bash
+# Đăng nhập
+curl -X POST https://ai-powered-uctalent.vercel.app/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@demo.com","password":"admin123"}'
+
+# Tạo phản hồi AI
+curl -X POST https://ai-powered-uctalent.vercel.app/api/ai/generate-response \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -d '{"reviewText": "Dịch vụ tuyệt vời! Nhân viên thân thiện."}'
 🛠️ Các lệnh
 Lệnh	Mô tả
-npm run dev	🔧 Chạy development
+npm run dev	🔧 Chạy development server
 npm run build	📦 Build production
-npm run start	🚀 Chạy production
-npm run lint	🔍 Kiểm tra code
+npm run start	🚀 Chạy production server
+npm run lint	🔍 Kiểm tra code style
 🐛 Xử lý lỗi
 <details> <summary><b>❌ 401 khi đăng nhập</b></summary>
 Kiểm tra DEMO_MODE=true trong .env.local
 
-Restart: npm run dev
+Restart server: npm run dev
 
 </details><details> <summary><b>❌ Lỗi kết nối Supabase</b></summary>
-Kiểm lại URL và keys
+Kiểm tra lại URL và API keys
 
-Đảm bảo dự án đang hoạt động
+Đảm bảo dự án Supabase đang hoạt động
 
 </details><details> <summary><b>❌ Lỗi OpenAI</b></summary>
-Kiểm tra API key
+Hệ thống tự động chuyển sang chế độ demo
 
-Hệ thống tự động dùng chế độ demo
+Kiểm tra API key nếu muốn dùng AI thật
 
-</details><details> <summary><b>❌ Lỗi Redis</b></summary>
-Không bắt buộc, tự động fallback sang memory cache
-
-Hoặc cài: docker run -d -p 6379:6379 redis
-
+</details><details> <summary><b>❌ Lỗi Port 3000</b></summary>
+bash
+npx kill-port 3000
+# Hoặc đổi port: npm run dev -- -p 3001
 </details>
-📞 Hỗ trợ
+📊 Thống kê dự án
+Chỉ số	Số lượng
+📄 Pages	25+
+🔌 API Endpoints	8
+🧩 Components	15+
+⏱️ Thời gian	7 ngày
+📄 License
+<div align="center"> <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"> <br> <strong>MIT License</strong><br> <sub>Copyright © 2026 Đặng Công Nguyên</sub><br> <sub>Dự án được phát triển cho bài test UCTalent Labs</sub> </div>
+📞 Hỗ trợ {#ho-tro}
 <div align="center">
 Kênh	Liên kết
 📧 Email	dangcongnguyenst@gmail.com
-🐙 GitHub	AI-Powered-UCTalent
+🐙 GitHub	@congnguyen2005
+🌐 Demo	ai-powered-uctalent.vercel.app
 </div>
-📄 License
-<div align="center"> <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"> <br> <sub>Copyright © 2026 AI ORM Platform</sub> </div>
-<p align="center"> <sub>Built with ❤️ using Next.js, TypeScript, TailwindCSS, Supabase & OpenAI</sub> </p>
+🙏 Cảm ơn
+Next.js - React Framework
+
+Supabase - Database
+
+OpenAI - GPT-4 API
+
+Tailwind CSS - Styling
+
+Framer Motion - Animations
+
+Lucide Icons - Icons
+
+<p align="center"> <sub>Built with ❤️ by Đặng Công Nguyên</sub><br> <sub>© 2026 AI ORM Platform - UCTalent Labs Test Assignment</sub> </p><p align="center"> <a href="#-ai-orm-platform---hệ-thống-quản-trị-danh-tiếng-thông-minh">⬆️ Lên đầu trang</a> </p> ```
