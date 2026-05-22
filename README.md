@@ -26,14 +26,10 @@ npm run dev
 🔧 Cấu hình
 1. Biến môi trường (.env.local)
 env
-# ─────────────────────────────────────────────
-# 🚀 NEXT.JS
-# ─────────────────────────────────────────────
-NEXT_PUBLIC_APP_URL=http://localhost:3000
 
-# ─────────────────────────────────────────────
+# 🚀 NEXT.JS
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 # 🗄️ SUPABASE DATABASE
-# ─────────────────────────────────────────────
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-publishable-key
 SUPABASE_SERVICE_ROLE_KEY=your-secret-key
