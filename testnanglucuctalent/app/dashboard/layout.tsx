@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Sidebar from '../components/dashboard/Sidebar'
 import Topbar from '../components/dashboard/Topbar'
+import ChatWidget from '../components/chat/ChatWidget'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter()
@@ -36,6 +37,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
       </div>
+       <ChatWidget />
     </div>
   )
 }

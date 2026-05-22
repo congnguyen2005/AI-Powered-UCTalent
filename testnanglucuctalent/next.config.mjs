@@ -1,12 +1,20 @@
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['lh3.googleusercontent.com', 'platform-lookaside.fbsbx.com', 'fnxzwkahxhkakagtnxhv.supabase.co'],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: 'standalone',
 }
 
 export default nextConfig
