@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 AI ORM Platform - Hệ thống quản trị danh tiếng thông minh
 
 <div align="center">
@@ -296,3 +297,6 @@ Framer Motion - Animations
 Lucide Icons - Icons
 
 <p align="center"> <sub>Built with ❤️ by Đặng Công Nguyên</sub><br> <sub>© 2026 AI ORM Platform - UCTalent Labs Test Assignment</sub> </p><p align="center"> <a href="#-ai-orm-platform---hệ-thống-quản-trị-danh-tiếng-thông-minh">⬆️ Lên đầu trang</a> </p> ```
+=======
+///
+>>>>>>> 31cdb26f9290dd2c59b43e0f9d5f7514ba1f408e
